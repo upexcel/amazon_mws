@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+      <mat-form-field class="width-100" appearance="outline">
+        <mat-icon matPrefix>perm_contact_calendar</mat-icon>
+        <mat-select placeholder="Last 12 months ,by month">
+          <mat-option [value]="''">
+            xyz
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+      <mat-form-field class="width-100" appearance="outline">
+        <mat-icon matPrefix>border_all</mat-icon>
+        <mat-select placeholder="All Products">
+          <mat-option [value]="''">
+            xyz
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+      <mat-form-field class="width-100" appearance="outline">
+        <mat-icon matPrefix>home</mat-icon>
+        <mat-select placeholder="All MarketPlaces">
+          <mat-option value="">
+            xyz
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+      <button mat-raised-button class="fliter-butt" color="primary">FILTER</button>
+    </div>
+  </div>
+
+
+  <div class="divTable">
+    <div class="divTableHeading">
+      <div class="divTableCell" *ngFor="let data of tableColom">
+        {{data}}
+      </div>
+    </div>
+
+    <div class="divTableBody" *ngFor="let data of table">
+      <div class="divTableRow">
+        <div class="divTableCell" [ngStyle]="{'width': width+'%'}" *ngFor="let d of data.keys">
+          <span *ngIf="d != 'child'">
+            <mat-icon class="middle" (click)=" data.display =! data.display" *ngIf="d=='name' && data.child && !data.display">keyboard_arrow_right</mat-icon>
+            <mat-icon class="middle" (click)="data.display =! data.display" *ngIf="d=='name' && data.child && data.display">keyboard_arrow_down</mat-icon>
+            {{data[d]}}
+          </span>
+        </div>
+      </div>
+      <div class="divTableRow" *ngFor="let val of data.child ; " [ngClass]="{'none':!data.display,'block': data.display}">
+        <div class="divTableCell" [ngStyle]="{'width': width+'%'}" [ngClass]="{'pl-20': d=='name'}" *ngFor="let d of val.keys">
+          <span *ngIf="d != 'child'"> {{val[d]}} </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column | titlecase}} </th>
+            <td mat-cell *matCellDef="let element">
+              <ngx-json-viewer *ngIf="column == 'Shipment Item List'" [json]="element['ShipmentItemList']" [expanded]="false"></ngx-json-viewer>
+              <span *ngIf="column != 'Shipment Item List' && column != 'created At' && column != 'updated At'">
+                {{element[column.replace(" ", "")] ? element[column.replace(" ", "")] : '****'}}
+              </span>
+              <span *ngIf="column == 'createdAt' || column == 'updatedAt'">
+                {{element[column.replace(" ", "")] | date}}
+              </span>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div> -->

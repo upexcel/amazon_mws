@@ -1,0 +1,15 @@
+<!-- 
+<tr *ngIf="tableData && tableData.name">
+  <td *ngFor="let cell of tableData.value">{{cell}}</td>
+</tr>
+<ng-container *ngIf="tableData.child && tableData.child.length; then createRow;">
+  </ng-container>
+  <ng-template #createRow>
+    <ng-container *ngTemplateOutlet="newRow; context:tableData">
+    </ng-container>
+  </ng-template>
+<ng-template #newRow let-name="child">
+  <tr *ngFor="let subrow of name">
+    <td *ngFor="let cell of subrow.value">{{cell}}</td>
+  </tr>
+</ng-template> -->

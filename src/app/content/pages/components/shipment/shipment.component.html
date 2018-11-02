@@ -1,0 +1,43 @@
+<!-- <div class=" m-scrollable m-scroller ">
+  <div class="m-timeline-2">
+    <div class="m-timeline-2__items  m--padding-top-25 m--padding-bottom-30" *ngFor="let data of shipmentList" (click)="gotoInboundShipments(data.ShipmentId)"> 
+      <div class="m-timeline-2__item">
+        <span class="m-timeline-2__item-time">{{data.ShipmentStatus}}</span>
+        <div class="m-timeline-2__item-cricle">
+          <i class="fa fa-genderless m--font-danger" *ngIf="data.ShipmentStatus == 'CANCELLED'"></i>
+          <i class="fa fa-genderless m--font-brand" *ngIf="data.ShipmentStatus == 'WORKING'"></i>
+          <i class="fa fa-genderless m--font-info" *ngIf="data.ShipmentStatus == 'RECEIVING'"></i>
+          <i class="fa fa-genderless m--font-warning" *ngIf="data.ShipmentStatus == 'IN_TRANSIT'"></i>
+          <i class="fa fa-genderless m--font-success" *ngIf="data.ShipmentStatus == 'SHIPPED'"></i>
+        </div>
+        <div class="m-timeline-2__item-text  m--padding-top-5">
+          {{data.ShipmentName}}
+          <div class="addressColor">
+            {{data['ShipFromAddress'].Name}} {{data['ShipFromAddress'].AddressLine1}} {{data['ShipFromAddress'].City}} {{data['ShipFromAddress'].StateOrProvinceCode}}
+            {{data['ShipFromAddress'].PostalCode}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div> -->

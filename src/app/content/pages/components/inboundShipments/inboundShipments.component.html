@@ -1,0 +1,52 @@
+<span class="width100" *ngIf="shipmentData">
+  <mat-card *ngFor="let list of shipmentData['member']">
+    <div class="inline">
+      <span class="heading blockCenter">
+        SellerSKU
+      </span>
+      <span class="title">
+        {{list.SellerSKU}}
+      </span>
+    </div>
+    <div class="inline">
+      <span class="heading blockCenter">
+        QuantityShipped
+      </span>
+      <span class="title">
+        {{list.QuantityShipped}}
+      </span>
+    </div>
+    <div class="inline">
+      <span class="heading blockCenter">
+        QuantityReceived
+      </span>
+      <span class="title">
+        {{list.QuantityReceived}}
+      </span>
+    </div>
+    <div class="inline" class="inline">
+      <span class="heading blockCenter">
+        QuantityInCase
+      </span>
+      <span class="title">
+        {{list.QuantityInCase}}
+      </span>
+    </div>
+    <div class="inline" class="inline" *ngIf="list.PrepDetailsList && list.PrepDetailsList.PrepDetails">
+      <span class="heading blockCenter">
+        PrepInstruction
+      </span>
+      <span class="title">
+        {{list.PrepDetailsList.PrepDetails.PrepInstruction}}
+      </span>
+    </div>
+    <div class="inline" class="inline" *ngIf="list.PrepDetailsList && list.PrepDetailsList.PrepDetails">
+      <span class="heading blockCenter">
+        PrepOwner
+      </span>
+      <span class="title">
+        {{list.PrepDetailsList.PrepDetails.PrepOwner}}
+      </span>
+    </div>
+  </mat-card>
+</span>
