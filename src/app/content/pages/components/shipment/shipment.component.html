@@ -21,7 +21,7 @@
             </mat-checkbox>
           </span>
 
-          <span *ngIf="column != 'select'">
+          <span *ngIf="column != 'select'" (click)="gotoInboundShipments(row['ShipmentId'])">
             <span *ngIf="column == 'ShipFromAddress'">
               {{row[column]['Name']}}, {{row[column]['AddressLine1']}}, {{row[column]['City']}},
               {{row[column]['StateOrProvinceCode']}}, {{row[column]['CountryCode']}}

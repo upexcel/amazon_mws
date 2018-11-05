@@ -30,7 +30,8 @@
     display: block;
     text-align: center;
 }
-.width100{
+
+.width100 {
     width: 100%;
 }
 
@@ -52,4 +53,13 @@
 .title {
     color: #909090;
     font-size: 12px;
+}
+
+.mat-header-row {
+    background: #f4f3f8;
+}
+
+.mat-row:hover {
+    background: #f4f3f8;
+    cursor: pointer;
 }
