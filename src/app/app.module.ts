@@ -45,13 +45,12 @@ import { MenuAsideService } from './core/services/layout/menu-aside.service';
 import { LayoutRefService } from './core/services/layout/layout-ref.service';
 import { SplashScreenService } from './core/services/splash-screen.service';
 import { DataTableService } from './core/services/datatable.service';
-import { ProductByIdComponent } from './product-by-id/product-by-id.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	// suppressScrollX: true
 };
 
 @NgModule({
-	declarations: [AppComponent, ProductByIdComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
