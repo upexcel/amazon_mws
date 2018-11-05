@@ -12,8 +12,8 @@ import { Credential } from './credential';
 
 @Injectable()
 export class AuthenticationService implements AuthService {
-	// API_URL = 'http://35.196.3.225:7000';
-	API_URL = 'http://192.168.1.14:7000';
+	API_URL = 'http://35.196.3.225:7000';
+	// API_URL = 'http://192.168.1.14:7000';
 	API_ENDPOINT_LOGIN = '/user/login';
 	API_ENDPOINT_REFRESH = '/refresh';
 	API_ENDPOINT_REGISTER = '/user/register';
