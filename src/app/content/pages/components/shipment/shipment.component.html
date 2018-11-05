@@ -1,3 +1,43 @@
+<div class="m-section">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <mat-table #sort="matSort" [dataSource]="shipmentList" matSort>
+      <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <span *ngIf="column == 'select'">
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </span>
+          <span *ngIf="column != 'select'"> {{column}} </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span *ngIf="column == 'select'">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </span>
+
+          <span *ngIf="column != 'select'">
+            <span *ngIf="column == 'ShipFromAddress'">
+              {{row[column]['Name']}}, {{row[column]['AddressLine1']}}, {{row[column]['City']}},
+              {{row[column]['StateOrProvinceCode']}}, {{row[column]['CountryCode']}}
+            </span>
+            <span *ngIf="column != 'ShipFromAddress'">{{row[column]}}</span>
+          </span>
+
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+
 <!-- <div class=" m-scrollable m-scroller ">
   <div class="m-timeline-2">
     <div class="m-timeline-2__items  m--padding-top-25 m--padding-bottom-30" *ngFor="let data of shipmentList" (click)="gotoInboundShipments(data.ShipmentId)"> 

@@ -5,18 +5,31 @@
     width: 0.214rem;
     height: 100%;
 }
+
 .m-timeline-2:before {
     background-color: #E7E9F5;
 }
+
 .m-timeline-2 .m-timeline-2__items .m-timeline-2__item .m-timeline-2__item-text {
     padding-left: 7rem;
 }
+
 .m-timeline-2 .m-timeline-2__items .m-timeline-2__item .m-timeline-2__item-cricle {
     left: 6.1rem;
 }
+
 .m-timeline-2 .m-timeline-2__items .m-timeline-2__item .m-timeline-2__item-time {
     font-size: 1.1rem;
 }
-.addressColor{
+
+.addressColor {
     color: #3e3e3e;
+}
+
+.mat-header-row {
+    background: #f4f3f8;
+}
+
+.mat-row:hover {
+    background: #f4f3f8;
 }
