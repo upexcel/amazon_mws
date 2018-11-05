@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InboundShipmentsComponent } from './inboundShipments.component';
 import { RouterModule } from '@angular/router';
@@ -10,11 +11,13 @@ import {
 	MatSortModule,
 	MatPaginatorModule,
 	MatFormFieldModule,
-	MatInputModule
+	MatInputModule,
+	MatSelectModule
 } from '@angular/material';
 @NgModule({
 	imports: [
 		CommonModule,
+		FormsModule,
 		LayoutModule,
 		MatIconModule,
 		MatCardModule,
@@ -23,6 +26,7 @@ import {
 		MatPaginatorModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatSelectModule,
 		RouterModule.forChild([
 			{
 				path: '',

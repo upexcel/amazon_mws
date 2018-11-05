@@ -22,6 +22,11 @@ export class InboundShipmentsComponent implements OnInit {
   ];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  SellerSKUs = ['all'];
+  FulfillmentNetworkSKUs = ['all'];
+  selectedSellerSku = 'all';
+  selectedFulfillmentNetworkSKU = 'all';
+  inboundFullData: any;
   constructor(private _change: ChangeDetectorRef,
     private _authService: AuthenticationService,
     private _route: ActivatedRoute
@@ -30,11 +35,26 @@ export class InboundShipmentsComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe(routeParams => {
       this._authService.getTypeAjax(`/seller/InboundShipmentsById/A2WR6NEBQYUU6E/${routeParams.id}`).subscribe((res) => {
-        this.shipmentData = new MatTableDataSource(res['ItemData']['member']);
-        this.shipmentData.paginator = this.paginator;
-        this.shipmentData.sort = this.sort;
-        this._change.detectChanges();
+        this.inboundFullData = Object.assign([], res['ItemData']['member']);
+        this.createTable(res['ItemData']['member']);
+        this.createFilters(res['ItemData']['member']);
       });
+    });
+  }
+
+  createTable(data) {
+    this.shipmentData = new MatTableDataSource(data)
+    this.shipmentData.paginator = this.paginator;
+    this.shipmentData.sort = this.sort;
+    this._change.detectChanges();
+  }
+
+  createFilters(data) {
+    console.log(data);
+    data.forEach(element => {
+      console.log(element)
+      this.FulfillmentNetworkSKUs.push(element['FulfillmentNetworkSKU']);
+      this.SellerSKUs.push(element['SellerSKU']);
     });
   }
 
@@ -43,4 +63,27 @@ export class InboundShipmentsComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.shipmentData.filter = filterValue;
   }
+
+  selectionFilterChange() {
+    if (this.selectedSellerSku === 'all' && this.selectedFulfillmentNetworkSKU === 'all') {
+      this.createTable(this.inboundFullData);
+    } else if (this.selectedSellerSku === 'all') {
+      const newData = [];
+      this.inboundFullData.forEach(element => {
+        if (element['FulfillmentNetworkSKU'] === this.selectedFulfillmentNetworkSKU) {
+          newData.push(element);
+        }
+        this.createTable(newData);
+      });
+    } else if (this.selectedFulfillmentNetworkSKU === 'all') {
+      const newData = [];
+      this.inboundFullData.forEach(element => {
+        if (element['SellerSKU'] === this.selectedSellerSku) {
+          newData.push(element);
+        }
+      });
+      this.createTable(newData);
+    }
+  }
+
 }

@@ -1,7 +1,17 @@
 <div class="m-section">
   <div class="example-header">
+    <mat-form-field class="mr-4">
+      <mat-select placeholder="SellerSKU" [(ngModel)]="selectedSellerSku" (selectionChange)="selectionFilterChange()">
+        <mat-option *ngFor="let sku of SellerSKUs" [value]="sku">{{sku | titlecase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="mr-4">
+      <mat-select placeholder="FulfillmentNetworkSKU" [(ngModel)]="selectedFulfillmentNetworkSKU" (selectionChange)="selectionFilterChange()">
+        <mat-option *ngFor="let sku of FulfillmentNetworkSKUs" [value]="sku">{{sku | titlecase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
     </mat-form-field>
   </div>
   <div class="example-container mat-elevation-z8">
