@@ -77,7 +77,19 @@ const routes: Routes = [
 			{
 				path: 'profile',
 				component: ProfileComponent
+			},{
+				path:'product',
+				loadChildren:'./components/product/product.module#ProductModule'
 			}
+			,{
+				path:'product-list/:id',
+				loadChildren:'./components/product-list/product-list.module#ProductListModule'
+			},
+			{
+				path:'product-by-id',
+				loadChildren:'./components/product-by-id/product-by-id.module#ProductByIdModule'
+			}
+	
 		]
 	},
 	{

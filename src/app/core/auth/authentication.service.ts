@@ -126,6 +126,13 @@ export class AuthenticationService implements AuthService {
 			);
 	}
 
+	public postTypeAjax(path,body): Observable<any> {
+		return this.http.post(this.API_URL + path,body)
+			.pipe(
+				catchError(this.handleError('', []))
+			);
+	}
+
 	/**
 	 * Handle Http operation that failed.
 	 * Let the app continue.

@@ -61,6 +61,16 @@
 	</li>
 	<li class="m-menu__item" [ngClass]="{ 'm-menu__item--submenu': item.submenu, 'm-menu__item--active' : !item.submenu && isMenuItemIsActive(item), 'm-menu__item--open' : item.submenu && isMenuItemIsActive(item) }" aria-haspopup="true">
 
+		<!-- if menu item hasn't submenu -->
+		<a *ngIf="!item.submenu" [routerLink]="['/product']" class="m-menu__link m-menu__toggle .m-menu__link-text" [matTooltip]="item.tooltip" matTooltipPosition="left">
+			<span class="m-menu__link-wrap" style="margin-left: 36px;">
+				<span class="m-menu__link-text" >Product</span>
+			</span>
+		</a>
+
+	</li>
+	<li class="m-menu__item" [ngClass]="{ 'm-menu__item--submenu': item.submenu, 'm-menu__item--active' : !item.submenu && isMenuItemIsActive(item), 'm-menu__item--open' : item.submenu && isMenuItemIsActive(item) }" aria-haspopup="true">
+
 			<!-- if menu item hasn't submenu -->
 			<a *ngIf="!item.submenu" [routerLink]="['/shipment']" class="m-menu__link m-menu__toggle .m-menu__link-text" [matTooltip]="item.tooltip" matTooltipPosition="left">
 				<span class="m-menu__link-wrap" style="margin-left: 36px;">
