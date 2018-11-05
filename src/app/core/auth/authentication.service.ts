@@ -12,8 +12,8 @@ import { Credential } from './credential';
 
 @Injectable()
 export class AuthenticationService implements AuthService {
-	API_URL = 'http://35.196.3.225:7000';
-	// API_URL = 'http://192.168.1.14:7000';
+	// API_URL = 'http://35.196.3.225:7000';
+	API_URL = 'http://192.168.1.14:7000';
 	API_ENDPOINT_LOGIN = '/user/login';
 	API_ENDPOINT_REFRESH = '/refresh';
 	API_ENDPOINT_REGISTER = '/user/register';
@@ -121,6 +121,13 @@ export class AuthenticationService implements AuthService {
 
 	public getTypeAjax(path): Observable<any> {
 		return this.http.get(this.API_URL + path)
+			.pipe(
+				catchError(this.handleError('', []))
+			);
+	}
+
+	public postTypeAjax(path,body): Observable<any> {
+		return this.http.post(this.API_URL + path,body)
 			.pipe(
 				catchError(this.handleError('', []))
 			);
