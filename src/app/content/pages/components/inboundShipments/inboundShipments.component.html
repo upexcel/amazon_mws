@@ -1,4 +1,28 @@
-<span class="width100" *ngIf="shipmentData">
+<div class="m-section">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <mat-table #sort="matSort" [dataSource]="shipmentData" matSort>
+
+      <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span *ngIf="column == 'PrepDetailsList'">{{row[column]['PrepDetails']['PrepInstruction']}}/{{row[column]['PrepDetails']['PrepOwner']}}</span>
+          <span *ngIf="column != 'PrepDetailsList'">{{row[column]}}</span>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+
+
+<!-- <span class="width100" *ngIf="shipmentData">
   <mat-card *ngFor="let list of shipmentData['member']">
     <div class="inline">
       <span class="heading blockCenter">
@@ -49,4 +73,4 @@
       </span>
     </div>
   </mat-card>
-</span>
+</span> -->

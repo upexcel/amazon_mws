@@ -22,7 +22,7 @@ export class ShipmentComponent implements OnInit {
       this.shipmentList = res['ShipmentData']['member'];
       // console.log("this.shipmentList", this.shipmentList)
       this.shipmentList.forEach((value: any) => {
-      console.log("*******",{ ...value, ...value.ShipFromAddress }) 
+        console.log("*******", { ...value, ...value.ShipFromAddress })
       })
       // console.log("this.shipmentList", this.shipmentList)
       this._change.detectChanges();
@@ -38,19 +38,4 @@ export class ShipmentComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-function createNewUser(id: number): any {
-  // const name =
-  //     NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-  //     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  // return {
-  //   id: id.toString(),
-  //   name: name,
-  //   progress: Math.round(Math.random() * 100).toString(),
-  //   color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  // };
-}
-
 }
