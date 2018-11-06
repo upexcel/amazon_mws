@@ -8,6 +8,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 @NgModule({
 	imports: [
@@ -19,6 +20,7 @@ import { MatIconModule } from "@angular/material/icon";
 		MatSelectModule,
 		MatButtonModule,
 		MatIconModule,
+		MatProgressSpinnerModule,
 		RouterModule.forChild([
 			{
 				path: '',

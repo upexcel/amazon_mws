@@ -85,11 +85,10 @@ const routes: Routes = [
 				path:'product-list/:id',
 				loadChildren:'./components/product-list/product-list.module#ProductListModule'
 			},
-			// {
-			// 	path:'product-by-id',
-			// 	loadChildren:'./components/product-by-id/product-by-id.module#ProductByIdModule'
-			// }
-	
+			{
+				path:'product-by-id/:id',
+				loadChildren:'./components/product-by-id/product-by-id.module#ProductByIdModule'
+			}
 		]
 	},
 	{

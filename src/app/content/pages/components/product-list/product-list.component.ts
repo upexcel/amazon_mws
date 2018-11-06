@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   displayedColumns: string[];
   reportId: string;
   getProductList;
+  loading: boolean;
   constructor(
     private _change: ChangeDetectorRef,
     private _authService: AuthenticationService,
@@ -23,28 +24,34 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => (this.reportId = params.id));
-    this.ProductList()
+    // this.route.params.subscribe(params => (this.reportId = params.id));
+    // this.ProductList()
   }
-  ProductList() {
-    this._authService.getTypeAjax(`/seller/GetProductReportById/A2WR6NEBQYUU6E/${this.reportId}`).subscribe(res => {
-      this.getProductList = res['data']
-      const data = [
-        'asin1',
-        'item-name',
-        "seller-sku",
-        "quantity",
-        "price",
-        "inbound"
-      ]
-      this.displayedColumns = data;
-      this.dataSource = new MatTableDataSource(this.getProductList);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
-  }
-  GetMatchingProduct(element){
-   this._authService.postTypeAjax('/seller/GetMatchingProductForId/A2WR6NEBQYUU6E',{sellerSKU:element['seller-sku'],MarketplaceId:'ATVPDKIKX0DER'}).subscribe(res=>{
-    })
-  }
+  // ProductList() {
+  //   this.loading = true;
+  //   try {
+  //     this._authService.getTypeAjax(`/seller/GetProductReportById/A2WR6NEBQYUU6E/${this.reportId}`).subscribe(res => {
+  //       this.loading = false;
+  //       this.getProductList = res['data']
+  //       const data = [
+  //         'asin1',
+  //         'item-name',
+  //         "seller-sku",
+  //         "quantity",
+  //         "price",
+  //         "inbound"
+  //       ]
+  //       this.displayedColumns = data;
+  //       this.dataSource = new MatTableDataSource(this.getProductList);
+  //       this.dataSource.paginator = this.paginator;
+  //       this.dataSource.sort = this.sort;
+  //     })
+  //   }
+  //   catch (e) {
+  //     this.loading = false;
+  //   }
+  // }
+  // GetMatchingProduct(element) {
+  //   this.router.navigate(["/product-by-id", element['seller-sku']]);
+  // }
 }

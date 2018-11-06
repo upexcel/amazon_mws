@@ -8,6 +8,7 @@ import { MatPaginatorModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
+import { MatProgressSpinnerModule } from '@angular/material';
 import { ProductListComponent } from './product-list.component'
 @NgModule({
 	imports: [
@@ -19,6 +20,7 @@ import { ProductListComponent } from './product-list.component'
 		MatSelectModule,
 		MatButtonModule,
 		MatIconModule,
+		MatProgressSpinnerModule,
 		RouterModule.forChild([
 			{
 				path: '',
