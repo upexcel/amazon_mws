@@ -10,35 +10,58 @@ import { Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
   getProducts;
+  getProductList;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[];
+  loading: boolean;
   constructor(private _change: ChangeDetectorRef,
     private _authService: AuthenticationService,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    this.getProduct();
   }
 
   getProduct() {
-    this._authService.getTypeAjax('/seller/RequestReportForproduct/A2WR6NEBQYUU6E').subscribe(res => {
-      this.getProducts = res['reportList']['ReportInfo']
-      const data = [
-        'Report Type',
-        'ReportId',
-        'ReportRequestId',
-        'AvailableDate',
-      ]
-      this.displayedColumns = data;
-      this.dataSource = new MatTableDataSource(this.getProducts);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
+    this.loading = true;
+    try {
+      this._authService.getTypeAjax('/seller/RequestReportForproduct/A2WR6NEBQYUU6E').subscribe(res => {
+      })
+     this.ProductList()
+    }
+    catch (e) {
+      this.loading = false;
+    }
   }
-  getProductList(element){
-    this.router.navigate(["/product-list",element.ReportId]);
+  ProductList() {
+    this.loading = true;
+    try {
+      this._authService.getTypeAjax(`/seller/GetProductReportById/A2WR6NEBQYUU6E`).subscribe(res => {
+        this.loading = false;
+        console.log(res,"***********");
+        
+        this.getProductList = res
+        const data = [
+          'asin1',
+          'item-name',
+          "seller-sku",
+          "quantity",
+          "price",
+          "inbound"
+        ]
+        this.displayedColumns = data;
+        this.dataSource = new MatTableDataSource(this.getProductList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+    }
+    catch (e) {
+      this.loading = false;
+    }
+  }
+  GetMatchingProduct(element) {
+    this.router.navigate(["/product-by-id", element['seller-sku']]);
   }
 }
