@@ -4,7 +4,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column | titlecase}}</th>
       <td mat-cell *matCellDef="let element">
           <ngx-json-viewer *ngIf="column == 'report Item List'" [json]="element['getProducts']" [expanded]="false"></ngx-json-viewer>
-        <span  *ngIf="column != 'product Item List' && column != 'created At' && column != 'updated At'"(click)="getProductList(element)">{{element[column.replace(" ", "")] ? element[column.replace(" ", "")] : '***'}}
+        <span  *ngIf="column != 'product Item List' && column != 'created At' && column != 'updated At'"(click)=" getProductList(element)">{{element[column.replace(" ", "")] ? element[column.replace(" ", "")] : '***'}}
         </span>
       </td>
     </ng-container>
