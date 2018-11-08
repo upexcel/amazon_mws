@@ -3,6 +3,9 @@ import { AuthenticationService } from '../../../../core/auth/authentication.serv
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AddProductComponent } from './add-product/add-product.component';
+
 @Component({
   selector: 'm-product',
   templateUrl: './product.component.html',
@@ -14,54 +17,111 @@ export class ProductComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[];
+  suppliers = [];
+  displayedColumns = [
+    'asin1',
+    'item-name',
+    'seller-sku',
+    'quantity',
+    'price',
+    'inbound',
+    'source',
+    'supplier_id'
+  ];
   loading: boolean;
-  constructor(private _change: ChangeDetectorRef,
+  resultsLength = 0;
+  limit = 10;
+  constructor(
+    private _change: ChangeDetectorRef,
     private _authService: AuthenticationService,
     private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.ProductList();
+      this.sort.sortChange.subscribe(() => {
+        this.paginator.pageIndex = 0;
+        this.ProductList();
+      });
+      this.paginator.page.subscribe(() => {
+        this.ProductList();
+      });
+    }, 500);
+    this.getAllSuppliers();
   }
 
   getProduct() {
     this.loading = true;
     try {
       this._authService.getTypeAjax('/seller/RequestReportForproduct/A2WR6NEBQYUU6E').subscribe(res => {
-      })
-     this.ProductList()
-    }
-    catch (e) {
+      });
+      this.ProductList();
+    } catch (e) {
       this.loading = false;
     }
   }
+
   ProductList() {
     this.loading = true;
+    console.log(this.sort, this.paginator);
     try {
-      this._authService.getTypeAjax(`/seller/GetProductReportById/A2WR6NEBQYUU6E`).subscribe(res => {
-        this.loading = false;
-        console.log(res,"***********");
-        
-        this.getProductList = res
-        const data = [
-          'asin1',
-          'item-name',
-          "seller-sku",
-          "quantity",
-          "price",
-          "inbound"
-        ]
-        this.displayedColumns = data;
-        this.dataSource = new MatTableDataSource(this.getProductList);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      })
-    }
-    catch (e) {
+      this._authService.getTypeAjax(
+        `/seller/GetProductReportById/A2WR6NEBQYUU6E?page=${this.paginator.pageIndex}&limit=${this.limit}&sortBy=${this.sort.active}&order=${this.sort.direction}`)
+        .subscribe(res => {
+          this.loading = false;
+          console.log(res, '***********');
+
+          this.getProductList = res['data'];
+          this.dataSource = this.getProductList;
+          this.resultsLength = res['length'];
+          this._change.detectChanges();
+        });
+    } catch (e) {
       this.loading = false;
     }
   }
+
   GetMatchingProduct(element) {
-    this.router.navigate(["/product-by-id", element['seller-sku']]);
+    this.router.navigate(['/product-by-id', element['seller-sku']]);
+  }
+
+  addProduct() {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '40vw',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.paginator.pageIndex = 0;
+        this.ProductList();
+      }
+    });
+  }
+
+  supplierChangeForProduct(productData) {
+    console.log(productData, 'productData')
+    try {
+      this.loading = true;
+      this._authService.postTypeAjax('/seller/assignSupplier', productData).subscribe(() => {
+        this.loading = false;
+      });
+    } catch (e) {
+      this.loading = false;
+      console.log(e);
+    }
+  }
+
+  getAllSuppliers() {
+    try {
+      this._authService.getTypeAjax('/seller/getSupplierList').subscribe((res) => {
+        this.suppliers = res;
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
