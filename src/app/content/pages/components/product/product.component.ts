@@ -96,6 +96,7 @@ export class ProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result) {
+        this.getAllSuppliers();
         this.paginator.pageIndex = 0;
         this.ProductList();
       }

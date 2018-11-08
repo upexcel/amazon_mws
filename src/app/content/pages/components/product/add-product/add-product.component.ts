@@ -18,6 +18,7 @@ export class AddProductComponent implements OnInit {
   }];
   productForm: FormGroup;
   loader = false;
+  isNewSupplierAdded = false;
   constructor(
     public dialogRef: MatDialogRef<AddProductComponent>,
     private formBuilder: FormBuilder,
@@ -46,7 +47,7 @@ export class AddProductComponent implements OnInit {
       this.loader = true;
       this._authService.postTypeAjax('/seller/addProduct', newProductData).subscribe((res) => {
         this.dialogRef.close(res);
-      this.loader = false;
+        this.loader = false;
       });
     } catch (e) {
       this.loader = false;
@@ -65,7 +66,7 @@ export class AddProductComponent implements OnInit {
   }
 
   close(data) {
-    this.dialogRef.close(data);
+    this.dialogRef.close(data ? data : this.isNewSupplierAdded);
   }
 
   addNewSupplier() {
@@ -76,6 +77,7 @@ export class AddProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.isNewSupplierAdded = true;
         this.getAllSuppliers();
       }
     });
