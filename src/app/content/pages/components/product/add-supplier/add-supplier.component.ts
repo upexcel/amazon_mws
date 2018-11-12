@@ -19,7 +19,7 @@ export class AddSupplierComponent implements OnInit {
 
   ngOnInit() {
     this.supplierForm = this.formBuilder.group({
-      'name': [null, Validators.required]
+      name: [null, Validators.required]
     });
   }
 

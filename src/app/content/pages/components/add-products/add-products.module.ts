@@ -39,6 +39,6 @@ import { AddSupplierComponent } from '../product/add-supplier/add-supplier.compo
 		AddSupplierComponent,
 		AddProductsComponent,
 	],
-	providers: []
+		providers: []
 })
 export class AddProductsModule { }

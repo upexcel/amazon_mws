@@ -40,11 +40,7 @@ import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 			}
 		])
 	],
-	entryComponents: [
-		AddSupplierComponent
-	],
 	declarations: [
-		AddSupplierComponent,
 		ProductComponent,
 	],
 	providers: []
