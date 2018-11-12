@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { AddProductsComponent } from './add-products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddSupplierComponent } from '../product/add-supplier/add-supplier.component';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -31,10 +32,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 			}
 		])
 	],
-	providers: [],
 	entryComponents: [
-	
+		AddSupplierComponent
 	],
-	declarations: [ AddProductsComponent]
+	declarations: [
+		AddSupplierComponent,
+		AddProductsComponent,
+	],
+	providers: []
 })
 export class AddProductsModule { }

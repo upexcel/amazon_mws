@@ -15,6 +15,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
+import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -39,8 +40,11 @@ import { MatInputModule } from '@angular/material/input'
 			}
 		])
 	],
-	
+	entryComponents: [
+		AddSupplierComponent
+	],
 	declarations: [
+		AddSupplierComponent,
 		ProductComponent,
 	],
 	providers: []
