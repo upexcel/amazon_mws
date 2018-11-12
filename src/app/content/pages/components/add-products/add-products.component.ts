@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthenticationService } from '../../../../core/auth/authentication.service';
-import { AddSupplierComponent } from '../product/add-supplier/add-supplier.component';
+import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { Router } from '@angular/router';
 @Component({
   selector: 'm-add-products',
