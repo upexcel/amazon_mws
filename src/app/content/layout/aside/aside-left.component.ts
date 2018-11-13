@@ -23,7 +23,41 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 	currentRouteUrl: string = '';
 	insideTm: any;
 	outsideTm: any;
-
+	menuList = [
+		{
+			title: 'Dashboard',
+			desc: 'Some description goes here',
+			root: true,
+			icon: 'flaticon-line-graph',
+			page: '/',
+			badge: { type: 'm-badge--danger', value: '2' },
+			translate: 'MENU.DASHBOARD',
+		},
+		{
+			title: 'P&L',
+			root: true,
+			page: '/p&l',
+			
+		},
+		{
+			title: 'P&L DataList',
+			root: true,
+			page: '/p&lDataList',
+			
+		},
+		{
+			title: 'product',
+			root: true,
+			page: '/product',
+			
+		},
+		{
+			title: 'shipment',
+			root: true,
+			page: '/shipment',
+			
+		},
+	];
 	constructor(
 		private el: ElementRef,
 		public classInitService: ClassInitService,
@@ -31,7 +65,7 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		public layoutConfigService: LayoutConfigService,
 		private router: Router,
 		private layoutRefService: LayoutRefService,
-		@Inject(DOCUMENT) private document: Document
+		@Inject(DOCUMENT) private document: Document,
 	) {
 		// subscribe to menu classes update
 		this.classInitService.onClassesUpdated$.subscribe(classes => {
@@ -51,12 +85,35 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	ngOnInit() {
+	async ngOnInit() {
 		this.currentRouteUrl = this.router.url.split(/[?#]/)[0];
 
 		this.router.events
 			.pipe(filter(event => event instanceof NavigationEnd))
 			.subscribe(event => this.currentRouteUrl = this.router.url.split(/[?#]/)[0]);
+	}
+
+	formatMenu(tags: any) {
+		tags.forEach(tag => {
+			if (tag['title'] === 'candidate') {
+				tag['data'].forEach(jobProfiles => {
+					jobProfiles['subchild'].forEach(subchild => {
+						if (subchild['unread']) {
+							subchild['badge'] = { type: 'm-badge--danger', value: subchild['unread'] };
+						}
+					});
+					jobProfiles['submenu'] = jobProfiles['subchild'];
+				});
+				this.menuList[1]['submenu'] = tag['data'];
+			} else {
+				tag['data'].forEach(jobProfiles => {
+					if (jobProfiles['unread']) {
+						jobProfiles['badge'] = { type: 'm-badge--danger', value: jobProfiles['unread'] };
+					}
+					this.menuList[1]['submenu'].push(jobProfiles);
+				});
+			}
+		});
 	}
 
 	isMenuItemIsActive(item): boolean {
