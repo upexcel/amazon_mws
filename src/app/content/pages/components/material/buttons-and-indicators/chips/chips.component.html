@@ -1,5 +1,5 @@
 <m-notice [icon]="'flaticon-exclamation m--font-primary'">
-	For more info please check the components's official demos & documentation 
+	For more info please check the components's official demos & documentation
 	<a class="m-link" href="https://material.angular.io/components/chips/overview" target="_blank">demos & documentation</a>
 </m-notice>
 
@@ -54,13 +54,11 @@
 		<m-material-preview [viewItem]="exampleStacked">
 			<div class="m-section">
 				<div class="m-section__content">
-						<mat-chip-list class="mat-chip-list-stacked">
-								<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">
-								  {{chip.name}}
-								</mat-chip>
-							  </mat-chip-list>
-							  
-
+					<mat-chip-list class="mat-chip-list-stacked">
+						<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">
+							{{chip.name}}
+						</mat-chip>
+					</mat-chip-list>
 				</div>
 			</div>
 		</m-material-preview>
