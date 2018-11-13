@@ -24,7 +24,6 @@ export class AddSupplierComponent implements OnInit {
   }
 
   addSupplier(newSupplier) {
-    console.log('newsupplier', newSupplier)
     try {
       this.loader = true;
       this._authService.postTypeAjax('/seller/addSupplier', newSupplier).subscribe((res) => {
@@ -33,7 +32,6 @@ export class AddSupplierComponent implements OnInit {
       });
     } catch (e) {
       this.loader = false;
-      console.log(e);
     }
   }
 

@@ -38,7 +38,6 @@ export class AddProductsComponent implements OnInit {
     this.getAllSuppliers();
   }
   addProduct(newProductData) {
-    console.log('newProductData', newProductData)
     try {
       this.loader = true;
       this._authService.postTypeAjax('/seller/addProduct', newProductData).subscribe((res) => {
@@ -47,7 +46,6 @@ export class AddProductsComponent implements OnInit {
       });
     } catch (e) {
       this.loader = false;
-      console.log(e);
     }
   }
 
@@ -57,7 +55,6 @@ export class AddProductsComponent implements OnInit {
         this.suppliers = res;
       });
     } catch (e) {
-      console.log(e);
     }
   }
   addNewSupplier() {
