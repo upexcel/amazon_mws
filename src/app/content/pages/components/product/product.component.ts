@@ -4,7 +4,6 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AddProductComponent } from './add-product/add-product.component';
 
 @Component({
   selector: 'm-product',
@@ -88,19 +87,7 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct() {
-    const dialogRef = this.dialog.open(AddProductComponent, {
-      width: '40vw',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result) {
-        this.getAllSuppliers();
-        this.paginator.pageIndex = 0;
-        this.ProductList();
-      }
-    });
+    this.router.navigate(['/add-products']);
   }
 
   supplierChangeForProduct(productData) {

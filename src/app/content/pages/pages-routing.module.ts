@@ -88,7 +88,12 @@ const routes: Routes = [
 			{
 				path:'product-by-id/:id',
 				loadChildren:'./components/product-by-id/product-by-id.module#ProductByIdModule'
-			}
+			},
+			{
+				path:'add-products',
+				loadChildren:'./components/add-products/add-products.module#AddProductsModule'
+			},
+			
 		]
 	},
 	{

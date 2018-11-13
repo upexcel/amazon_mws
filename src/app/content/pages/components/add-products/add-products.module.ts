@@ -1,47 +1,46 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PartialsModule } from '../../../partials/partials.module';
-import { ProductComponent } from './product.component'
 import { MatTableModule } from '@angular/material/table';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MatProgressSpinnerModule, MatDialogModule, MatInputModule, MatFormFieldModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
+import { AddProductsComponent } from './add-products.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 @NgModule({
 	imports: [
+		FormsModule,
 		CommonModule,
 		PartialsModule,
 		MatTableModule,
 		NgxJsonViewerModule,
 		MatPaginatorModule,
-		MatFormFieldModule,
-		MatSortModule,
-		MatInputModule,
 		MatSelectModule,
+		MatFormFieldModule,
 		MatButtonModule,
 		MatIconModule,
-		FormsModule,
+		MatInputModule,
 		ReactiveFormsModule,
 		MatProgressSpinnerModule,
 		MatDialogModule,
 		RouterModule.forChild([
 			{
 				path: '',
-				component: ProductComponent
+				component: AddProductsComponent
 			}
 		])
 	],
+	entryComponents: [
+		AddSupplierComponent
+	],
 	declarations: [
-		ProductComponent,
+		AddSupplierComponent,
+		AddProductsComponent,
 	],
 	providers: []
 })
-export class ProductModule { }
+export class AddProductsModule { }

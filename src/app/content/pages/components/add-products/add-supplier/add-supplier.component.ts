@@ -19,12 +19,11 @@ export class AddSupplierComponent implements OnInit {
 
   ngOnInit() {
     this.supplierForm = this.formBuilder.group({
-      'name': [null, Validators.required]
+      name: [null, Validators.required]
     });
   }
 
   addSupplier(newSupplier) {
-    console.log('newsupplier', newSupplier)
     try {
       this.loader = true;
       this._authService.postTypeAjax('/seller/addSupplier', newSupplier).subscribe((res) => {
@@ -33,7 +32,6 @@ export class AddSupplierComponent implements OnInit {
       });
     } catch (e) {
       this.loader = false;
-      console.log(e);
     }
   }
 

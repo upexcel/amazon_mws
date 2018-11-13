@@ -1,15 +1,16 @@
 <h3 matDialogTitle class="ml-4">Add Supplier</h3>
 <div class="container-fluid">
 	<div class="row">
-		<form class="w-100" [formGroup]="supplierForm">
+		<form class="w-100" [formGroup]="supplierForm" *ngIf="supplierForm">
 			<div class="col-md-12">
 				<mat-form-field class="w-100">
-					<input matInput placeholder="Supplier name" formControlName="name" required>
+					<div class="m-input-icon m-input-icon--right">
+						<input type="text" matInput class="form-control m-input" formControlName="name" placeholder="Enter supplier Name">
+					</div>
 				</mat-form-field>
 			</div>
 			<button mat-raised-button type="button" color="danger" class="m-2" (click)="close(false)">Close</button>
-			<button mat-raised-button type="button" color="primary" class="m-2 " [disabled]="supplierForm.invalid || loader"
-			 (click)="addSupplier(supplierForm.value)">
+			<button mat-raised-button type="button" color="primary" class="m-2 " [disabled]="supplierForm.invalid || loader" (click)="addSupplier(supplierForm.value)">
 				<span *ngIf="!loader">Add</span>
 				<mat-spinner *ngIf="loader" class="m-2" style="display:inline-block" [diameter]='20'></mat-spinner>
 			</button>

@@ -1,0 +1,101 @@
+<div class="m-content">
+	<div class="row">
+		<div class="col-lg-12">
+			<!--begin::Portlet-->
+			<div class="m-portlet">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+							<h3 class="m-portlet__head-text">
+								Add Product
+							</h3>
+						</div>
+					</div>
+				</div>
+
+				<!--begin::Form-->
+				<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" [formGroup]="productForm">
+					<div class="m-portlet__body">
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">ASIN:</label>
+							<div class="col-lg-3">
+								<input type="email" class="form-control m-input" formControlName="asin1" placeholder="Enter Amazon Standard Identification Number">
+								<span class="m-form__help">Please enter Amazon Standard Identification Number</span>
+							</div>
+							<label class="col-lg-2 col-form-label">PRODUCT NAME:</label>
+							<div class="col-lg-3">
+								<input type="email" class="form-control m-input" formControlName="item-name" placeholder="Enter Product Name">
+								<span class="m-form__help">Please enter Product Name</span>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">SELLER SKU:</label>
+							<div class="col-lg-3">
+								<div class="m-input-icon m-input-icon--right">
+									<input type="text" class="form-control m-input" formControlName="seller-sku" placeholder="Enter seller sku">
+								</div>
+								<span class="m-form__help">Please enter seller sku</span>
+							</div>
+							<label class="col-lg-2 col-form-label">QUANTITY:</label>
+							<div class="col-lg-3">
+								<div class="m-input-icon m-input-icon--right">
+									<input type="number" class="form-control m-input" formControlName="quantity" placeholder="Enter quantity">
+								</div>
+								<span class="m-form__help">Please enter quantity</span>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">PRICE:</label>
+							<div class="col-lg-3">
+								<div class="m-input-icon m-input-icon--right">
+									<input matInput type="number" class="form-control m-input" formControlName="price" placeholder="Enter Price">
+								</div>
+								<span class="m-form__help">Please enter Price</span>
+							</div>
+							<label class="col-lg-2 col-form-label">INBOUND:</label>
+							<div class="col-lg-3">
+								<div class="m-input-icon m-input-icon--right">
+									<input type="text" class="form-control m-input" formControlName="inbound" placeholder="Enter inbound">
+								</div>
+								<span class="m-form__help">Please enter inbound</span>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">SUPPLIER:</label>
+							<div class="col-lg-3">
+								<div class="m-radio-inline">
+									<mat-select placeholder="Supplier" formControlName="supplier_id" name="supplier" required>
+										<mat-option *ngFor="let suppliers of suppliers" [value]="suppliers._id">
+											{{suppliers.name}}
+										</mat-option>
+									</mat-select>
+								</div>
+								<span class="m-form__help">Please select supplier</span>
+							</div>
+							<div class="col-md-4">
+								<button mat-raised-button type="button" color="default" class="m-2 addSupplier" (click)="addNewSupplier()">Add New Supplier</button>
+							</div>
+						</div>
+					</div>
+					<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+						<div class="m-form__actions m-form__actions--solid">
+							<div class="row">
+								<div class="col-lg-2"></div>
+								<div class="col-lg-10">
+									<button type="reset" class="btn btn-success" [disabled]="productForm.invalid || loader" (click)="addProduct(productForm.value)">
+										<span *ngIf="!loader">Add Product</span>
+										<mat-spinner *ngIf="loader" class="m-2" style="display:inline-block" [diameter]='20'></mat-spinner>
+									</button>
+									<button type="reset" class="btn btn-secondary cancelbtn">Reset</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
