@@ -20,29 +20,29 @@
 				<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" [formGroup]="productForm">
 					<div class="m-portlet__body">
 						<div class="form-group m-form__group row">
-							<label class="col-lg-2 col-form-label">ASIN NAME:</label>
+							<label class="col-lg-2 col-form-label">ASIN:</label>
 							<div class="col-lg-3">
-								<input type="email" class="form-control m-input" formControlName="asin1" placeholder="Enter ASIN name">
-								<span class="m-form__help">Please enter ASIN name</span>
+								<input type="email" class="form-control m-input" formControlName="asin1" placeholder="Enter Amazon Standard Identification Number">
+								<span class="m-form__help">Please enter Amazon Standard Identification Number</span>
 							</div>
-							<label class="col-lg-2 col-form-label">ITEM-NAME:</label>
+							<label class="col-lg-2 col-form-label">PRODUCT NAME:</label>
 							<div class="col-lg-3">
-								<input type="email" class="form-control m-input" formControlName="item-name" placeholder="Enter item-name">
-								<span class="m-form__help">Please enter item-name</span>
+								<input type="email" class="form-control m-input" formControlName="item-name" placeholder="Enter Product Name">
+								<span class="m-form__help">Please enter Product Name</span>
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
-							<label class="col-lg-2 col-form-label">SELLER-SKU</label>
+							<label class="col-lg-2 col-form-label">SELLER SKU</label>
 							<div class="col-lg-3">
 								<div class="m-input-icon m-input-icon--right">
-									<input type="text" class="form-control m-input" formControlName="seller-sku" placeholder="Enter seller-sku">
+									<input type="text" class="form-control m-input" formControlName="seller-sku" placeholder="Enter seller sku">
 								</div>
-								<span class="m-form__help">Please enter seller-sku</span>
+								<span class="m-form__help">Please enter seller sku</span>
 							</div>
 							<label class="col-lg-2 col-form-label">QUANTITY:</label>
 							<div class="col-lg-3">
 								<div class="m-input-icon m-input-icon--right">
-									<input type="text" class="form-control m-input" formControlName="quantity" placeholder="Enter quantity">
+									<input type="number" class="form-control m-input" formControlName="quantity" placeholder="Enter quantity">
 								</div>
 								<span class="m-form__help">Please enter quantity</span>
 							</div>

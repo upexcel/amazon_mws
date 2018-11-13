@@ -11,13 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-products.component.scss']
 })
 export class AddProductsComponent implements OnInit {
-  suppliers = [{
-    id: '1',
-    value: 'spplier 1'
-  }, {
-    id: '2',
-    value: 'spplier 2'
-  }];
+  suppliers;
   productForm: FormGroup;
   loader = false;
   isNewSupplierAdded = false;
